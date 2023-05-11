@@ -1,0 +1,70 @@
+<div class="nav-i">
+    <nav class=" navbar-light" style="background-color: #350133;">
+        <img src="assets/1.png" width="50" height="50"  class="d-inline-block align-top" alt="">
+       <h1>POKEMONES</h1>
+   </nav>
+</div>
+
+
+
+<div class="table-t">
+
+    <form [formGroup]="pokemonForm" (ngSubmit)="guardar()"method="POST">
+        <div id="formulario"> 
+          <h1> FORMULARIO </h1>
+        </div>
+          
+              <div id="tabla-formulario">
+          <label for="nombre">Nombres</label>
+                  <input placeholder="Ingrese su nombre..." formControlName="nombre" type="text"     id="tabla">
+          
+          <label for="estado">Estado</label>
+                  <input placeholder="Ingrese estado..." formControlName="estado" type="text" id="tabla">
+                
+            <label for="url">URL </label>
+            
+            <input type="file" name="imagensubida" placeholder="subir archivo" formControlName="url" accept="image/png, .jpeg, .jpg, image/gif">
+            <input type="submit" value="Enviar datos">
+            <label for="url">URL </label>
+                  <input placeholder="Escriba url" formControlName="url" type="text" id="tabla"> 
+                  
+                  <label for="descripcion">Descripcion </label>
+            <select  aria-label="categoria" formControlName="categoria" id="tabla"> Descripcion
+                <option [ngValue]="item" *ngFor="let item of categorias" id="tabla">
+                        {{item.descripcion}}
+                </option>
+            </select>
+       </div>
+                <button name="registro" type="submit" class="btn btn-danger btn-sm m-2"  id="button"> ¡Registrarse! </button>
+          </form>
+</div>
+
+<h1>Listado de POKEMONES</h1>
+    <table class="listado">
+        <thead>
+            <tr>
+                <th><h1>CODIGO</h1></th>
+                <th><h1>NOMBRE</h1></th>
+                <th><h1>ESTADO</h1></th>
+                <th><h1>URL</h1></th>
+                <th><h1>DESCRIPCION</h1></th>
+                <th colspan="2"><h1>OPCIONES</h1></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of poke">
+            <tr>
+                <th>{{item.codigo}}</th>
+                <td>{{item.nombre}}</td>
+                <td>{{item.estado}}</td>
+                <td>{{item.url}}</td>
+                <!-- <td>{{item.id_catego.descripcion}}</td> -->
+                <td></td>
+                <td>
+                    <button type="button" (click)="delete(item)" class="btn btn-danger btn-sm m-2">ELIMINAR</button>
+                    <button type="button" (click)="update(item)" class="btn btn-success btn-sm m-2">EDITAR</button>
+                  </td>
+            
+        </tbody>
+        
+    </table>
+    <!-- <a href="./../ingresar/poke/poke.component.html">CREAR POKEMON</a> -->
